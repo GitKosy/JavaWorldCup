@@ -2,54 +2,80 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GamePanel extends JFrame {
+public class GamePanel extends JPanel {
 
-	JPanel leftPanel,rightPanel;
-	JLabel leftLabel,rightLabel;
+	JPanel leftPanel,rightPanel;					// 선택지
+	JLabel leftLabel,rightLabel;					//
+	
+	
+	
+	
 	public GamePanel() {
-		setTitle("ING");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					
+		setLayout(null);
+		setPreferredSize(new Dimension(800,600));
+		setSize(800,600);
+		setVisible(true);
 		
-		Container c = getContentPane();
-		c.setLayout(null);
 		
-		MyMouseListener listener = new MyMouseListener();
+		MyMouseListener listener = new MyMouseListener();			// listener
 		
-		leftPanel = new JPanel();
+		
+		
+		
+		leftPanel = new JPanel();					//set panel
+		leftPanel.setLayout(null);
+		//leftPanel.setPreferredSize(new Dimension(350,400));
 		leftPanel.setBounds(30, 30, 350, 400);
 		leftPanel.setBackground(Color.black);
 		leftPanel.addMouseListener(listener);
-		c.add(leftPanel);
+		leftPanel.setVisible(true);
+		add(leftPanel);
+		//leftPanel.add(new EntryPanel());
+		//추가한부분//
+		//leftPanel.add(EPanel);
+		//추가한부분//
 		
-		rightPanel = new JPanel();
-		rightPanel.setBounds(420, 30, 350, 400);
-		rightPanel.setBackground(Color.black);
+		
+		
+		
+		rightPanel = new JPanel();					//set panel
+		rightPanel.setLayout(null);
+		rightPanel.setPreferredSize(new Dimension(350,400));
+		rightPanel.setBounds(410, 30, 350, 400);
+		rightPanel.setBackground(Color.green);
 		rightPanel.addMouseListener(listener);
-		c.add(rightPanel);
+		rightPanel.setVisible(true);
+		add(rightPanel);
 		
-		leftLabel = new JLabel();
+		leftLabel = new JLabel();					//set label
 		leftLabel.setText("leftLabel");
-		leftLabel.setBounds(30, 440, 350, 50);
+		leftLabel.setBounds(0, 320, 350, 50);
 		leftLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		leftLabel.setBackground(Color.gray);
-		c.add(leftLabel);
+		leftPanel.add(leftLabel);
+		leftLabel.setVisible(true);
 		
-		rightLabel = new JLabel();
+		rightLabel = new JLabel();					//set label
 		rightLabel.setText("rightLabel");
 		rightLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		rightLabel.setBounds(420, 440, 350, 50);
+		rightLabel.setBounds(0, 320, 350, 50);
 		rightLabel.setBackground(Color.gray);
-		c.add(rightLabel);
+		rightPanel.add(rightLabel);
+		rightLabel.setVisible(true);
 		
-		setSize(800,600);
-		setVisible(true);
-	}
+		
+		
+		
+	}//constructor
+	
+	
 	class MyMouseListener implements MouseListener{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			new GamePanel();
-			setVisible(false);
+			add(new GamePanel());
+			
 		}
 
 		@Override

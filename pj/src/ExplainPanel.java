@@ -2,33 +2,33 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ExplainPanel extends JFrame{
+public class ExplainPanel extends JPanel{
 
 	JPanel leftPanel,rightPanel;
 	JButton Backbtn;
 	
 	public ExplainPanel() {
-		setTitle("Explain");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		Container c = getContentPane();
-		c.setLayout(null);
+		
+		
+		setLayout(null);
 		
 		leftPanel = new JPanel();
 		leftPanel.setBounds(50, 50, 350, 400);
 		leftPanel.setBackground(Color.pink);
-		c.add(leftPanel);
+		add(leftPanel);
 		
 		rightPanel = new JPanel();
 		rightPanel.setBounds(450, 50, 300, 300);
 		rightPanel.setBackground(Color.pink);
-		c.add(rightPanel);
+		add(rightPanel);
 		
 		Backbtn = new JButton();
 		Backbtn.setText("BACK");
 		Backbtn.setBounds(650, 400, 100, 50);
 		Backbtn.addMouseListener(new MyMouseListener());
-		c.add(Backbtn);
+		add(Backbtn);
+		
 		setSize(800,600);
 		setVisible(true);
 	}

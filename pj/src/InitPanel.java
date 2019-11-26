@@ -2,50 +2,72 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class InitPanel extends JFrame {
+//초기화프레임
+public class InitPanel extends JPanel {
 
-	JLabel Title;
-	JButton btnGirl,btnBoy,btnExp;
+	JLabel 			Title;											//제목
+	JButton 		btnGirl,btnBoy,btnExp;							//여자버튼 남자버튼 설명버튼
+	
+	private void hide(boolean flag)
+	{
+		this.Title.setVisible(flag);
+		this.btnGirl.setVisible(flag);
+		this.btnBoy.setVisible(flag);
+		this.btnExp.setVisible(flag);
+	}
+	
+	//constructor
 	public InitPanel() {
-		setTitle("IDEAL WORLD CUP");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container c = getContentPane();
-		c.setLayout(null);
 		
-		MyMouseListener listener = new MyMouseListener();
-		MyExplainListener explisten = new MyExplainListener();
-		Title = new JLabel();
+		
+		setLayout(null);
+		setPreferredSize(new Dimension(800,600));
+		setSize(800,600);
+		setVisible(true);
+		
+		
+		MyMouseListener listener = new MyMouseListener();		// mouse listener
+		MyExplainListener explisten = new MyExplainListener();	// explain listener 
+		
+		Title = new JLabel();											// title
 		Title.setText("Ideal World Cup");
 		Title.setBounds(300, 30, 300, 50);
-		c.add(Title);
+		add(Title);
 		
-		btnGirl = new JButton();
+		btnGirl = new JButton();										
 		btnGirl.setText("Girl");
 		btnGirl.setBounds(100, 200, 100, 30);
 		btnGirl.addMouseListener(listener);
-		c.add(btnGirl);
+		add(btnGirl);
 		
 		btnBoy = new JButton();
 		btnBoy.setText("Boy");
 		btnBoy.setBounds(100, 300, 100, 30);
 		btnBoy.addMouseListener(listener);
-		c.add(btnBoy);
+		add(btnBoy);
 		
 		btnExp = new JButton();
 		btnExp.setText("Explain");
 		btnExp.setBounds(100, 400, 100, 30);
 		btnExp.addMouseListener(explisten);
-		c.add(btnExp);
+		add(btnExp);
 		
-		setSize(800,600);
-		setVisible(true);
-	}
+		Title.setVisible(true);;
+		btnGirl.setVisible(true);
+		btnBoy.setVisible(true);
+		btnExp.setVisible(true);
+		
+		
+		hide(true);
+		
+	}//constructor
+	
 	class MyMouseListener implements MouseListener{
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			new GamePanel();
-			setVisible(false);
+			add(new GamePanel());
+			hide(false);
 		}
 
 		@Override
@@ -65,8 +87,8 @@ public class InitPanel extends JFrame {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			new ExplainPanel();
-			setVisible(false);
+			add(new ExplainPanel());
+			hide(false);
 		}
 
 		@Override
